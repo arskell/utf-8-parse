@@ -1,6 +1,7 @@
 #include "utf-8-parse/utf-8-parse.h"
 
 
+
 int next_pos_utf8(const char* data, int current_position, int max_size_bytes){
 
     if(current_position < 0){
@@ -14,10 +15,14 @@ int next_pos_utf8(const char* data, int current_position, int max_size_bytes){
     return current_position + length;
 }
 
-unsigned int get_utf8_symbol(const char* data, int current_position, int max_size_bytes){
+int get_utf8_symbol(const char* data, int current_position, int max_size_bytes){
 
-    unsigned int result = 0;
+    int result = 0;
 
+    if(current_position < 0){
+        return 0;
+    }
+    
     auto length = get_utf8_field_length(data, current_position, max_size_bytes);
     if(length == 0){
         return 0;
@@ -47,13 +52,13 @@ unsigned int get_utf8_symbol(const char* data, int current_position, int max_siz
     return result;
 }
 
-unsigned int get_utf8_field_length(const char* data, int current_position, int max_size_bytes){
+int get_utf8_field_length(const char* data, int current_position, int max_size_bytes){
     
     if(current_position >= max_size_bytes){
         return 0;
     }
 
-    unsigned int result = 0;
+    int result = 0;
 
     const auto mark = static_cast<unsigned char>(data[current_position] >> 3);
     
@@ -76,3 +81,4 @@ unsigned int get_utf8_field_length(const char* data, int current_position, int m
     return result;
 
 }
+
