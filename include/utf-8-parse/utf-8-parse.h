@@ -15,7 +15,7 @@ int next_pos_utf8(const char* data, int current_position, int max_size_bytes);
 /// @param current_position Index of the beginning of the utf-8 encoded symbol
 /// @param max_size_bytes Size of the array
 /// @return Decoded UTF-8 symbol. Returns zero on error
-unsigned int get_utf8_symbol(const char* data, int current_position, int max_size_bytes);
+int get_utf8_symbol(const char* data, int current_position, int max_size_bytes);
 
 
 /// @brief Decode UTF-8 symbol length in bytes that begins under current_position index   
@@ -23,7 +23,7 @@ unsigned int get_utf8_symbol(const char* data, int current_position, int max_siz
 /// @param current_position Index of the beginning of the utf-8 encoded symbol
 /// @param max_size_bytes Size of the array
 /// @return Decoded UTF-8 symbol length. Returns zero on error
-unsigned int get_utf8_field_length(const char* data, int current_position, int max_size_bytes);
+int get_utf8_field_length(const char* data, int current_position, int max_size_bytes);
 
 
 #endif
